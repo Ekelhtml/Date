@@ -1,13 +1,15 @@
 
 import express, { static as expressStatic, json } from 'express';
+import cors from 'cors'; 
+
 import { readFileSync, writeFileSync } from 'fs';
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.static('public'));
-app.use(json());
-
+app.use(express.json());
+app.use(cors());
 
 
 app.get('/fechas', (req, res) => {
@@ -22,6 +24,7 @@ app.post('/fechas', (req, res) => {
         const fechas = obtenerFechas();
         fechas.push({ fecha });
         guardarFechas(fechas);
+        console.log('Fecha guardada con éxito.');
         res.json({ success: true, message: 'Fecha guardada con éxito.' });
     } else {
         res.status(400).json({ success: false, message: 'Fecha no proporcionada.' });
