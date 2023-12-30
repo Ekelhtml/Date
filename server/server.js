@@ -3,6 +3,7 @@ import express, { static as expressStatic, json } from 'express';
 import cors from 'cors'; 
 
 import { readFileSync, writeFileSync } from 'fs';
+import path from 'path';
 
 const app = express();
 const PORT = 3000;
@@ -11,6 +12,19 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(cors());
 
+// public/index.html
+
+/**
+ * 
+ * __dirname = directorio del archivo de codigo
+ * __filenam = nombre del de archivo de codigo
+ * 
+ * process.cwd() de donde corro node
+ */
+
+app.get('/', function(req, res){
+    res.sendFile(path.resolve('public/index.html'));
+});
 
 app.get('/fechas', (req, res) => {
     const fechas = obtenerFechas();
