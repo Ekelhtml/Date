@@ -7,9 +7,11 @@
   <title>Input Date y JSON</title>
 </head>
 <body>
-  <label for="fechaInput">Selecciona una fecha:</label>
-  <input type="date" id="fechaInput">
-  <button onclick="guardarFecha()">Guardar Fecha</button>
+  <form id="form">
+    <label for="fechaInput">Selecciona una fecha:</label>
+    <input name="date" type="datetime-local" >
+    <button type="submit">Guardar Fecha</button>
+  </form>
 
   <script src="client.js"></script>
 
